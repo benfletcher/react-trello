@@ -7,12 +7,12 @@ export default class List extends React.Component {
   }
 
   render() {
-
+    console.log(this.props);
     return (
       <div className="card-list">
         <div>
-          List Title: {this.props.listTitle}
-          {this.props.cardContent.map((card) =>
+          List Title: {this.props.listInfo.listTitle}
+          {this.props.listInfo.cards.map((card) =>
             <Card cardContent={card} />
           )}
         </div>

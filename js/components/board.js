@@ -6,13 +6,13 @@ export default class Board extends React.Component {
     super(props);
   }
   render() {
-    let cards = ['card 1', 'card 2', 'card 3'];
-
+    let { boardState } = this.props;
     return (
       <div className="boards">
-        <div>Board title: {this.props.boardTitle}</div>
-        {this.props.lists.map((list) =>
-          <List listTitle={list} cardContent={cards} />
+        <div>Board title: {this.props.boardState.boardTitle}</div>
+        {this.props.boardState.lists.map((list) => {
+          return <List listInfo={list}/>
+        }
         )}
       </div>
     );
