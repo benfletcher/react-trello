@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import Card from './card';
+// ********** //
+// not in use //
+// ********** //
 
-export default class List extends Component {
+import React, { Component } from 'react';
+import List from './list';
+
+export default class ListContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newCardInfo: "Super interesting new card content. Get your new card here."
+      newCardContent: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({newCardInfo: event.target.value});
+    this.setState({newCardContent: event.target.value});
     this.props.onAddInputChanged(event.target.value);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.onAddSubmit(this.state.newCardInfo);
   }
 
   render() {
@@ -34,13 +32,13 @@ export default class List extends Component {
             <Card cardInfo={card} key={card.cardId}/>
           )}
         </ul>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.onAddSubmit}>
           <label>
-            Add:
+            New Card:
             <input
               type="text"
-              placeholder="New card content..."
-              value={this.state.newCardInfo}
+              default="testing... default"
+              value={this.state.newCardContent}
               onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
