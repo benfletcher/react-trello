@@ -6,7 +6,7 @@ export default class List extends Component {
     super(props);
 
     this.state = {
-      newCardInfo: "Super interesting new card content. Get your new card here."
+      newCardInfo: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,15 +15,21 @@ export default class List extends Component {
 
   handleChange(event) {
     this.setState({newCardInfo: event.target.value});
-    this.props.onAddInputChanged(event.target.value);
+    this.props.onAddCardInputChange(event.target.value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onAddSubmit(this.state.newCardInfo);
+
+    let cardId = this.props.listInfo.cards.length;
+    let content = this.state.newCardInfo ||
+      `Add new card to list ${this.props.listInfo.listId} at index ${cardId}`;
+
+    this.props.onAddCardSubmit({ content, cardId }, this.props.listInfo.listId);
   }
 
   render() {
+
     return (
       <div className="list">
         <h2 className="list-title">

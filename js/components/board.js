@@ -8,50 +8,50 @@ export default class Board extends Component {
     super(props);
 
     this.state = {
-      boards: {
-        boardTitle: "Loading...",
-        boardId: "0",
-        lists: []
-      }
+      boardTitle: "Loading...",
+      boardId: "0",
+      lists: []
     };
 
     this.loadBoardState();
 
-    this.onAddInputChanged = this.onAddInputChanged.bind(this);
-    this.onAddSubmit = this.onAddSubmit.bind(this);
+    this.onAddCardInputChange = this.onAddCardInputChange.bind(this);
+    this.onAddSubmit = this.onAddCardSubmit.bind(this);
   }
 
   loadBoardState() {
     let oReq = new XMLHttpRequest();
     oReq.onload = e => {
       const importedBoard = JSON.parse(oReq.responseText);
-      this.setState({ boards: importedBoard[0] });
+      this.setState(importedBoard);
     };
     oReq.open("get", boardDataUrl, true);
     oReq.send();
   }
 
-  onAddInputChanged(input) {
-    console.info('onAddInputChanged CB:', input);
+  onAddCardInputChange(input) {
+    console.info('onAddCardInputChange CB:', input);
   }
 
-  onAddSubmit(cardInfo) {
-    console.log('List form submitted.', cardInfo);
+  onAddCardSubmit(newCard, listId) {
+    console.log(arguments);
+    console.log(this.state);
+    // this.setState(this.state.lists[listId] = [ ...this.state.lists[listId], newCard ])
   }
 
   render() {
     return (
       <div className="board">
-        <h1 id="board-title" key={this.state.boards.boardId.toString()}>
-          {`Board: ${this.state.boards.boardTitle}`}
+        <h1 id="board-title" key={this.state.boardId.toString()}>
+          {`Board: ${this.state.boardTitle}`}
         </h1>
         <div className="lists">
-          {this.state.boards.lists.map(list =>
+          {this.state.lists.map(list =>
             <List
               listInfo={list}
               key={list.listId}
-              onAddInputChanged={this.onAddInputChanged}
-              onAddSubmit={this.onAddSubmit}
+              onAddCardInputChange={this.onAddCardInputChange}
+              onAddCardSubmit={this.onAddCardSubmit}
             />
           )}
         </div>
