@@ -1,0 +1,66 @@
+[
+  {
+    "content": "Lowe and Sons",
+    "id": "5848f370fc13ae2f89000067",
+    "child": [
+      {
+        "content": "Hybrid",
+        "id": "5848f370fc13ae2f89000068",
+        "child": [
+          {
+            "content": "Cross Group Systemic Data Warehouse",
+            "id": "5848f370fc13ae2f89000069"
+          },
+          {
+            "content": "Digitized Transitional Customer Loyalty",
+            "id": "5848f370fc13ae2f8900006a"
+          },
+          {
+            "content": "Versatile Clear Thinking Flexibility",
+            "id": "5848f370fc13ae2f8900006b"
+          },
+          {
+            "content": "Universal Fault Tolerant Functionalities",
+            "id": "5848f370fc13ae2f8900006c"
+          }
+        ]
+      },
+      {
+        "content": "Team Oriented",
+        "id": "5848f370fc13ae2f8900006d",
+        "child": [
+          {
+            "content": "Open Architected Context Sensitive Function",
+            "id": "5848f370fc13ae2f8900006e"
+          },
+          {
+            "content": "Persistent Full Range Orchestration",
+            "id": "5848f370fc13ae2f8900006f"
+          },
+          {
+            "content": "Organized Full Range Secured Line",
+            "id": "5848f370fc13ae2f89000070"
+          }
+        ]
+      },
+      {
+        "content": "6th Generation",
+        "id": "5848f370fc13ae2f89000071",
+        "child": [
+          {
+            "content": "Ameliorated Value Added Solution",
+            "id": "5848f370fc13ae2f89000072"
+          },
+          {
+            "content": "Managed Explicit Firmware",
+            "id": "5848f370fc13ae2f89000073"
+          },
+          {
+            "content": "Down Sized Responsive Hierarchy",
+            "id": "5848f370fc13ae2f89000074"
+          }
+        ]
+      }
+    ]
+  }
+]

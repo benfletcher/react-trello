@@ -1,0 +1,51 @@
+.item {
+  background-color: lightblue;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.content {
+  cursor: pointer;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+p.content:hover {
+  background-color: grey;
+  border-color: green;
+}
+
+article {
+  margin-bottom: 20px;
+}
+
+textarea.content {
+  background-color: lightyellow;
+  text-align: left;
+  font-size: medium;
+  color: #2e43a1;
+  cursor: auto;
+  display: inherit;
+}
+
+span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+span button {
+  width: 70px;
+  height: 30px;
+  margin: inherit;
+  display: inherit;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: lightblue;
+  border: 1px solid #666;
+}
