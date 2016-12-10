@@ -6,30 +6,57 @@ class Content extends Component {
 
     this.state = {
       editing: false,
-      content: this.props.children
     }
-    this.onContentClick = this.onContentClick.bind(this);
+
+    this.onEditContent = this.onEditContent.bind(this);
+    this.onSaveEdits = this.onSaveEdits.bind(this);
   };
 
-  onContentClick(event) {
-    console.log('clickie clickie', event);
+  onEditContent(event) {
     this.setState({editing: true});
   };
 
+  onSaveEdits(event) {
+    this.setState({
+      editing: false
+    });
+
+    let updatedItem = {
+      id: this.props.children.id,
+      created: this.props.children.created,
+      content: this.refs.content.value
+    };
+
+    console.log(this.props);
+    this.props.updateItem(updatedItem);
+
+  };
+
   render() {
-    // const Tag = `h${this.props.level}`;
     const className = `content level-${this.props.level}`;
 
-    return (this.state.editing) ? (
-        <span>
-          <textarea defaultValue={this.state.content} className={className}/>
-          <button type="button">Save</button>
-        </span>
-      ) : (
-        <p onClick={this.onContentClick} className={className}>
-          {this.state.content}
-        </p>
+    const normalView = () => {
+      const Tag = `h${Math.min(this.props.level, 6)}`;
+      return (
+        <Tag onClick={this.onEditContent} className={className}>
+          {this.props.children.content}
+        </Tag>
+        // TODO: new sibling button
       );
+    }
+
+    const editView = () => (
+      <textarea
+        defaultValue={this.props.children.content}
+        className={className}
+        autoFocus={true}
+        onBlur={this.onSaveEdits}
+        spellCheck="false"
+        ref="content"
+      />
+    );
+
+    return (this.state.editing) ? editView() : normalView();
   };
 
 };

@@ -1,10 +1,16 @@
 .item {
-  background-color: lightblue;
   border: 1px solid black;
   border-radius: 5px;
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   padding: 10px;
+}
+.odd {
+  background-color: lightblue;
+}
+
+.even {
+  background-color: lightgrey;
 }
 
 .content {
@@ -14,6 +20,7 @@
   text-align: center;
   border-radius: 3px;
   padding: 15px;
+  white-space: pre-line;
 }
 
 p.content:hover {
@@ -32,6 +39,10 @@ textarea.content {
   color: #2e43a1;
   cursor: auto;
   display: inherit;
+  height: 10em;
+  border: 3px solid green;
+  border-radius: 8px 8px 0px 8px;
+  outline: none;
 }
 
 span {

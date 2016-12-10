@@ -1,29 +1,61 @@
 import React, { Component } from 'react';
 import Content from './content';
 
-const ItemContainer = props => {
-  if (!props.children) {
-    return null;
-  }
+class ItemContainer extends Component {
+  constructor(props) {
+    super(props);
 
-  let style = (props.level % 2) ? {backgroundColor: "lightgrey"} : {};
+    this.state = {};
 
-  const className = `item level-${props.level}`;
+    this.addItem = this.addItem.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+  };
 
-  return (
-    <div className={className} style={style}>
-      {props.children.map(item =>
-        <article key={item.id}>
-          <Content level={props.level}>
-            {item.content}
-          </Content>
-          <ItemContainer level={props.level + 1}>
-            {item.child}
-          </ItemContainer>
-        </article>
-      )}
-    </div>
-  );
+
+
+  addItem(item) {
+    if (id in this.state) {
+      throw new Error('uh-oh trying to add dup ID...');
+    }
+    this.state[item.id] = {
+      content: item.content,
+      created: item.created
+    };
+  };
+
+  updateItem(item) {
+    console.log('updating', item);
+    this.setState(item, () => console.log('updated?', this.state));
+  };
+
+  render() {
+    if (!this.props.children) {
+      // TODO new child button
+      return null;
+    }
+
+    const className = `item level-${this.props.level}`;
+    const oddEven = (this.props.level % 2) ? "odd" : "even";
+
+    return (
+      <div className={`${className} ${oddEven}`}>
+        {this.props.children.map(item =>
+          <article key={item.id}>
+            <Content
+              level={this.props.level}
+              addItem={this.addItem}
+              updateItem={this.updateItem}
+            >
+              {item}
+            </Content>
+            <ItemContainer level={this.props.level + 1}>
+              {item.child}
+            </ItemContainer>
+          </article>
+        )}
+      </div>
+    );
+  };
 }
 
 export default ItemContainer;
