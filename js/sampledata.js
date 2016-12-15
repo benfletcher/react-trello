@@ -1,5 +1,24 @@
-
-let bar = []
+let bar = [
+  {
+    "id": "12",
+    "created": "2015-11-30T00:19:40Z",
+    "content": "my id is 12",
+    "child": [
+      {
+        "id": "42",
+        "created": "2016-09-13T11:39:36Z",
+        "content": "my id is 42",
+        "child": []
+      },
+      {
+        "id": "43",
+        "created": "today",
+        "content": "my id is 43",
+        "child": []
+      }
+    ]
+  }
+];
 
 let foo = [
   {
@@ -106,6 +125,42 @@ let foo = [
   }
 ];
 
+function flatten(obj) {
+  let map = new Map();
 
+  (function recurse(obj) {
 
-export default foo;
+  	obj.forEach(item => {
+  		let newVal = {
+        created: item.created,
+        content: item.content,
+        children: []
+      };
+
+  		if (item.child) {
+  			newVal.children = item.child.map(item => item.id);
+  		}
+
+      map.set(item.id, newVal);
+
+  		if (item.child) {
+  			recurse(item.child);
+  		}
+  	});
+
+  }(obj));
+
+  return map;
+}
+
+const head = "12";
+const data = flatten(bar);
+
+const newId = () => {
+    var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+        return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+};
+
+export {data, head, newId};

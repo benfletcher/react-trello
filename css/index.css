@@ -1,7 +1,7 @@
 .item {
   border: 1px solid black;
   border-radius: 5px;
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   padding: 10px;
 }
@@ -46,7 +46,7 @@ textarea.content {
 }
 
 span {
-  display: block;
+  display: flex;
   margin-bottom: 20px;
 }
 

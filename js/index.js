@@ -8,12 +8,12 @@ const boardDataUrl =
 import React from 'react';
 import ReactDOM  from 'react-dom';
 import ItemContainer from './components/item-container';
-import sampleData from './sampleData';
+import {data, head} from './sampledata';
 
-function render(data) {
+function render(head) {
   ReactDOM.render(
     <ItemContainer level={1}>
-      {data}
+      {[head]}
     </ItemContainer>,
     document.getElementById('app')
   );
@@ -21,7 +21,7 @@ function render(data) {
 
 if (USE_SAMPLE_DATA) {
 
-  render(sampleData);
+  render(head);
 
 } else {
 

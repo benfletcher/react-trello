@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import { newId } from '../sampledata'
 
 class Content extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      editing: false,
+      editing: this.props.editing || false,
     }
 
     this.onEditContent = this.onEditContent.bind(this);
     this.onSaveEdits = this.onSaveEdits.bind(this);
-  };
+  }
 
   onEditContent(event) {
     this.setState({editing: true});
-  };
+  }
 
   onSaveEdits(event) {
     this.setState({
@@ -22,15 +23,15 @@ class Content extends Component {
     });
 
     let updatedItem = {
-      id: this.props.children.id,
-      created: this.props.children.created,
-      content: this.refs.content.value
+      [this.props.id]: {
+        created: this.props.children.created,
+        content: this.refs.content.value,
+        children: this.props.children.children
+      }
     };
 
-    console.log(this.props);
     this.props.updateItem(updatedItem);
-
-  };
+  }
 
   render() {
     const className = `content level-${this.props.level}`;
@@ -38,10 +39,9 @@ class Content extends Component {
     const normalView = () => {
       const Tag = `h${Math.min(this.props.level, 6)}`;
       return (
-        <Tag onClick={this.onEditContent} className={className}>
-          {this.props.children.content}
-        </Tag>
-        // TODO: new sibling button
+          <Tag onClick={this.onEditContent} className={className}>
+            {this.props.children.content}
+          </Tag>
       );
     }
 
@@ -57,7 +57,7 @@ class Content extends Component {
     );
 
     return (this.state.editing) ? editView() : normalView();
-  };
+  }
 
 };
 
